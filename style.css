@@ -1,0 +1,166 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+.menu-container {
+  height: 3rem;
+  border: 1px solid black;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding-left: 0.5rem;
+}
+
+.menu-container * {
+  height: 60%;
+  border: 1px solid;
+}
+
+.font-size {
+  width: 5%;
+}
+
+.font-family {
+  width: 21%;
+}
+
+.bui-container {
+  width: 21%;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
+
+.bui-container > * {
+  width: 30%;
+  height: 80%;
+  text-align: center;
+}
+
+.align-container {
+  width: 14%;
+}
+
+.color-container {
+  width: 10%;
+}
+
+.formula-container {
+  height: 2rem;
+  border: 1px solid black;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
+
+.formula-container > * {
+  height: 70%;
+}
+
+.address-input {
+  width: 4rem;
+}
+
+.formula-input {
+  width: calc(100vw - 6rem);
+}
+.grid-container {
+  height: calc(100vh - (4rem + 2rem + 2rem));
+  border: 1px solid black;
+  /* we have done overflow here so that the 100 rowws come with the scroll bar */
+  overflow: auto;
+  position: relative;
+  /* background-color: lightgreen; */
+}
+
+.sheet-container {
+  border: 1px solid black;
+  height: 2rem;
+  display: flex;
+}
+
+.add-sheet_btn-container {
+  /* border: 1px solid black; */
+  height: 100%;
+  width: 4rem;
+  padding-top: 0.3rem;
+  padding-left: 0.9rem;
+}
+
+.sheet-list {
+  /* border: 1px solid black; */
+  /* height: 100%; */
+  width: calc(100vw - 3rem);
+  display: flex;
+  overflow: auto;
+}
+
+.sheet-list::-webkit-scrollbar {
+  display: none;
+}
+/* Hide scrollbar for IE, Edge and Firefox */
+.sheet-list {
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+}
+
+.sheet {
+  /* border: 1px solid black; */
+  height: 100%;
+  min-width: 5rem;
+  padding-top: 0.3rem;
+  padding-left: 0.9rem;
+  background-color: lightslategrey;
+}
+
+.active {
+  background-color: white;
+}
+
+.box {
+  height: 2rem;
+  width: 2rem;
+  border: 1px solid;
+  text-align: center;
+}
+
+.cell {
+  min-width: 4rem;
+  border: 1px solid;
+  text-align: center;
+  height: 2rem;
+}
+
+.left-box {
+  background-color: lightgray;
+}
+
+.left-col {
+  background-color: lightgreen;
+}
+
+.top-row {
+  display: flex;
+  height: 2rem;
+  position: absolute;
+  top: 0rem;
+  left: 2rem;
+  background-color: lightgreen;
+}
+
+.grid {
+  background-color: white;
+  position: absolute;
+  top: 2rem;
+  left: 2rem;
+}
+
+.row {
+  display: flex;
+}
+
+.active-btn {
+  background-color: gray;
+}

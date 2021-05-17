@@ -3,8 +3,11 @@ let topRow=document.querySelector(".top-row");
 let grid=document.querySelector(".grid");
 let addressInput=document.querySelector(".address-input");
 let boldBtn=document.querySelector(".bold");
+let underLineBtn=document.querySelector(".underline");
+let italicBtn=document.querySelector(".italic");
 let rows=100;
 let cols=26;
+let fontSizeElement=document.querySelector(".font-size");
 
 // we are making the left col here it should have 100 rows from 1 to 100
 for(let i=0;i<rows;i++){
@@ -46,11 +49,13 @@ for(let i=0;i<rows;i++)
     grid.appendChild(row);
 }
 
+// making a 2d array to store the attributes of each cell
 let sheetDb=[];
 
 for(let i=0;i<rows;i++){
     let row=[];
     for(let j=0;j<cols;j++){
+        // information of each cell is stored as object
         let cell={
             bold:"normal",
             italic:"normal",
@@ -82,12 +87,27 @@ for(let i=0;i<allCells.length;i++)
         // setting adress of our clicked cell in  address input
         addressInput.value=address;
 
+        // to get the informtion of the cell we clicked
         let cellObject=sheetDb[rid][cid];
 
+        // Now if the text in the cell is not bold when we clicked it then we have to remove the active class. 
         if(cellObject.bold=="normal"){
             boldBtn.classList.remove("active-btn");
         }else{
+            // Now if the text in the cell is  bold when we clicked it then we have to add the active class. 
             boldBtn.classList.add("active-btn");
+        }
+
+        if(cellObject.italic=="normal"){
+            italicBtn.classList.remove("active-btn");
+        }else{
+            italicBtn.classList.add("active-btn");
+        }
+
+        if(cellObject.underline=="none"){
+            underLineBtn.classList.remove("active-btn");
+        }else{
+            underLineBtn.classList.add("active-btn");
         }
 
     })
@@ -96,23 +116,74 @@ for(let i=0;i<allCells.length;i++)
 allCells[0].click();
 
 boldBtn.addEventListener("click",function(){
+    
     let uiCellElement=findUICellElement() 
-    // uiCellElement.style.fontWeight="bold"
     let cid=uiCellElement.getAttribute("cid");
     let rid=uiCellElement.getAttribute("rid");
+    // cellObject contains all the attributes of the cell;
     let cellObject=sheetDb[rid][cid];
 
+    // now when we clicked on bold button and the bold attribute in the cellObj is normal then we have to make the text in the cell as bold and add the active class on that cell 
     if(cellObject.bold=="normal"){
         uiCellElement.style.fontWeight="bold";
         boldBtn.classList.add("active-btn");
         cellObject.bold="bold"
     }
+    // if it is bold then we do the opposite thing
     else
     {
         uiCellElement.style.fontWeight="normal"
         boldBtn.classList.remove("active-btn");
         cellObject.bold="normal";
     }
+})
+
+italicBtn.addEventListener("click",function(){
+    let uiCellElement=findUICellElement();
+    
+    let cid=uiCellElement.getAttribute("cid");
+    let rid=uiCellElement.getAttribute("rid");
+    let cellObject=sheetDb[rid][cid];
+
+    if(cellObject.italic=="normal")
+    {
+        uiCellElement.style.fontStyle="italic";
+        italicBtn.classList.add("active-btn");
+        cellObject.italic="italic"
+    }
+    else
+    {
+        uiCellElement.style.fontStyle="normal";
+        italicBtn.classList.remove("active-btn");
+        cellObject.italic="normal"
+    }
+})
+
+underLineBtn.addEventListener("click",function(){
+    let uiCellElement=findUICellElement();
+
+    let cid=uiCellElement.getAttribute("cid");
+    let rid=uiCellElement.getAttribute("rid");
+    let cellObject=sheetDb[rid][cid];
+
+    if(cellObject.underline=="none")
+    {
+        uiCellElement.style.textDecoration="underline";
+        underLineBtn.classList.add("active-btn");
+        cellObject.underline="underline"
+    }
+    else
+    {
+        uiCellElement.style.textDecoration="none";
+        underLineBtn.classList.remove("active-btn");
+        cellObject.underline="none"
+    }
+})
+
+fontSizeElement.addEventListener("change",function(){
+    let val=fontSizeElement.value;
+    let uiCellElement=findUICellElement();
+    uiCellElement.style.fontSize=val+"px";
 })
 
 function getRIDCIDFromAdress(address){

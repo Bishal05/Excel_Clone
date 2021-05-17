@@ -164,3 +164,7 @@
 .active-btn {
   background-color: gray;
 }
+
+.nos-container > * {
+  border: none;
+}

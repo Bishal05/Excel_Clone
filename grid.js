@@ -8,6 +8,7 @@ let italicBtn=document.querySelector(".italic");
 let rows=100;
 let cols=26;
 let fontSizeElement=document.querySelector(".font-size");
+let formulaBar=document.querySelector(".formula-input");
 
 // we are making the left col here it should have 100 rows from 1 to 100
 for(let i=0;i<rows;i++){
@@ -64,7 +65,10 @@ for(let i=0;i<rows;i++){
             fontFamily:"sans-serif",
             fonrSize:"16",
             color:"black",
-            bColor:"none"
+            bColor:"none",
+            formula:"",
+            value:"",
+            children:[]
         }
         row.push(cell);
     }
@@ -108,6 +112,13 @@ for(let i=0;i<allCells.length;i++)
             underLineBtn.classList.remove("active-btn");
         }else{
             underLineBtn.classList.add("active-btn");
+        }
+
+        if(cellObject.formula){
+            formulaBar.value=cellObject.formula;
+        }
+        else{
+            formulaBar.value="";
         }
 
     })
